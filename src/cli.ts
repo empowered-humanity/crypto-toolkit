@@ -9,8 +9,6 @@ import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import chalk from 'chalk';
 import {
-  encrypt,
-  decrypt,
   encryptCombined,
   decryptCombined,
   generateKey,
@@ -19,7 +17,7 @@ import { hashPassword, verifyPassword } from './core/password.js';
 import { generateKeyPair, sign, verify } from './asymmetric/ed25519.js';
 import { generateX25519KeyPair } from './asymmetric/x25519.js';
 import { randomBytes, randomToken, randomUUID } from './core/random.js';
-import { sha256, hashToHex } from './core/hash.js';
+import { hashToHex } from './core/hash.js';
 
 const program = new Command();
 

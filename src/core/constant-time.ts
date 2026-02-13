@@ -183,7 +183,7 @@ export function constantTimeCopy(
   const mask = condition ? 0xff : 0x00;
 
   for (let i = 0; i < dest.length; i++) {
-    dest[i] = source[i] & mask;
+    dest[i] = source[i]! & mask;
   }
 }
 
@@ -207,7 +207,7 @@ export function isZero(buffer: Uint8Array): boolean {
   let result = 0;
 
   for (let i = 0; i < buffer.length; i++) {
-    result |= buffer[i];
+    result |= buffer[i]!;
   }
 
   return result === 0;

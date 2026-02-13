@@ -7,7 +7,7 @@
  * @module core/hash
  */
 
-import { createHash } from 'crypto';
+import { createHash, createHmac } from 'crypto';
 import sodium from 'sodium-native';
 
 /**
@@ -98,9 +98,12 @@ export function blake2b(
   }
 
   const hash = Buffer.alloc(outputLength);
-  const keyBuf = key ? Buffer.from(key) : null;
 
-  sodium.crypto_generichash(hash, input, keyBuf);
+  if (key) {
+    sodium.crypto_generichash(hash, input, Buffer.from(key));
+  } else {
+    sodium.crypto_generichash(hash, input);
+  }
 
   return new Uint8Array(hash);
 }
@@ -127,8 +130,7 @@ export function hmacSHA256(key: Uint8Array, data: Uint8Array | string): Uint8Arr
     ? Buffer.from(data, 'utf-8')
     : Buffer.from(data);
 
-  const hmac = createHash('sha256')
-    .update(Buffer.from(key))
+  const hmac = createHmac('sha256', Buffer.from(key))
     .update(input)
     .digest();
 

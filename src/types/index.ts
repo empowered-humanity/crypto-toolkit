@@ -37,7 +37,10 @@ export interface PasswordHashOptions {
 export interface HashedPassword {
   hash: string;
   algorithm: PasswordHashAlgorithm;
-  parameters: Record<string, number>;
+  parameters: {
+    memoryCost: number;
+    timeCost: number;
+  };
 }
 
 // ============================================================================

@@ -16,7 +16,8 @@
     "test:watch": "vitest",
     "test:vectors": "vitest run --config vitest.vectors.config.ts",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "sbom": "node generate-sbom.js"
   },
   "dependencies": {
     "sodium-native": "^4.0.0",

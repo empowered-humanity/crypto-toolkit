@@ -1,0 +1,103 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:ed7457c4-21a2-45a5-b1cd-69e596b8f70d",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-02-12T19:27:35.751Z",
+    "tools": [
+      {
+        "name": "te-security-sbom-generator",
+        "version": "1.0.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "@te-security/crypto-toolkit",
+      "version": "0.1.0",
+      "description": "Comprehensive cryptographic utilities for the TE Code stack",
+      "licenses": [
+        {
+          "license": {
+            "id": "UNLICENSED"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40te-security/crypto-toolkit@0.1.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "sodium-native",
+      "version": "4.0.0",
+      "purl": "pkg:npm/sodium-native@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "secrets.js-grempe",
+      "version": "2.0.0",
+      "purl": "pkg:npm/secrets.js-grempe@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "jose",
+      "version": "5.0.0",
+      "purl": "pkg:npm/jose@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "snarkjs",
+      "version": "0.7.0",
+      "purl": "pkg:npm/snarkjs@0.7.0"
+    },
+    {
+      "type": "library",
+      "name": "commander",
+      "version": "12.0.0",
+      "purl": "pkg:npm/commander@12.0.0"
+    },
+    {
+      "type": "library",
+      "name": "chalk",
+      "version": "5.3.0",
+      "purl": "pkg:npm/chalk@5.3.0"
+    },
+    {
+      "type": "library",
+      "name": "ora",
+      "version": "8.0.0",
+      "purl": "pkg:npm/ora@8.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@te-security/shared",
+      "version": "workspace:*",
+      "purl": "pkg:npm/%40te-security/shared@workspace:*"
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "5.7.0",
+      "purl": "pkg:npm/typescript@5.7.0"
+    },
+    {
+      "type": "library",
+      "name": "tsx",
+      "version": "4.7.0",
+      "purl": "pkg:npm/tsx@4.7.0"
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "2.0.0",
+      "purl": "pkg:npm/vitest@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "20.0.0",
+      "purl": "pkg:npm/%40types/node@20.0.0"
+    }
+  ]
+}

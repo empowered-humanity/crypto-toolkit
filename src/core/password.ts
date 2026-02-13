@@ -123,13 +123,16 @@ export async function verifyPassword(
     : hashedPassword.hash;
 
   if (!hash || hash.length === 0) {
-    throw new Error('Hash cannot be empty');
+    return false;
   }
 
   // Verify using libsodium (timing-safe)
+  // Hash buffer must be exactly crypto_pwhash_STRBYTES, null-padded
   try {
+    const hashBuf = Buffer.alloc(sodium.crypto_pwhash_STRBYTES);
+    Buffer.from(hash, 'utf-8').copy(hashBuf);
     return sodium.crypto_pwhash_str_verify(
-      Buffer.from(hash, 'utf-8'),
+      hashBuf,
       Buffer.from(password, 'utf-8')
     );
   } catch (error) {
@@ -167,9 +170,12 @@ export async function needsRehash(
   const targetOpslimit = options.timeCost || OPSLIMIT_MODERATE;
   const targetMemlimit = options.memoryCost || MEMLIMIT_MODERATE;
 
+  // Hash buffer must be exactly crypto_pwhash_STRBYTES, null-padded
   try {
+    const hashBuf = Buffer.alloc(sodium.crypto_pwhash_STRBYTES);
+    Buffer.from(hash, 'utf-8').copy(hashBuf);
     return sodium.crypto_pwhash_str_needs_rehash(
-      Buffer.from(hash, 'utf-8'),
+      hashBuf,
       targetOpslimit,
       targetMemlimit
     );

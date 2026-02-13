@@ -10,7 +10,6 @@
  */
 
 import sodium from 'sodium-native';
-import { randomBytes as nodeRandomBytes } from 'crypto';
 
 /**
  * Generate cryptographically secure random bytes
@@ -125,8 +124,7 @@ export function randomString(
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       const result: string[] = [];
       for (let i = 0; i < length; i++) {
-        const randomIndex = randomInt(chars.length);
-        result.push(chars[randomIndex]);
+        result.push(chars.charAt(randomInt(chars.length)));
       }
       return result.join('');
     }
@@ -135,8 +133,7 @@ export function randomString(
       const chars = '0123456789';
       const result: string[] = [];
       for (let i = 0; i < length; i++) {
-        const randomIndex = randomInt(chars.length);
-        result.push(chars[randomIndex]);
+        result.push(chars.charAt(randomInt(chars.length)));
       }
       return result.join('');
     }
@@ -161,7 +158,7 @@ export function randomString(
 export function shuffle<T>(array: T[]): T[] {
   for (let i = array.length - 1; i > 0; i--) {
     const j = randomInt(i + 1);
-    [array[i], array[j]] = [array[j], array[i]];
+    [array[i], array[j]] = [array[j]!, array[i]!];
   }
   return array;
 }
@@ -184,7 +181,7 @@ export function randomChoice<T>(array: T[]): T {
   }
 
   const index = randomInt(array.length);
-  return array[index];
+  return array[index]!;
 }
 
 /**
@@ -202,8 +199,8 @@ export function randomUUID(): string {
   const bytes = randomBytes(16);
 
   // Set version (4) and variant (RFC 4122)
-  bytes[6] = (bytes[6] & 0x0f) | 0x40; // Version 4
-  bytes[8] = (bytes[8] & 0x3f) | 0x80; // Variant 10
+  bytes[6] = (bytes[6]! & 0x0f) | 0x40; // Version 4
+  bytes[8] = (bytes[8]! & 0x3f) | 0x80; // Variant 10
 
   const hex = Buffer.from(bytes).toString('hex');
 

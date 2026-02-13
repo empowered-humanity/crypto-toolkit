@@ -136,16 +136,16 @@ export function decrypt(
     : null;
 
   // Decrypt and verify tag
-  const success = sodium.crypto_aead_xchacha20poly1305_ietf_decrypt(
-    plaintext,
-    null,  // nsec (unused)
-    combined,
-    ad,
-    Buffer.from(encrypted.nonce),
-    Buffer.from(key)
-  );
-
-  if (!success) {
+  try {
+    sodium.crypto_aead_xchacha20poly1305_ietf_decrypt(
+      plaintext,
+      null,  // nsec (unused)
+      combined,
+      ad,
+      Buffer.from(encrypted.nonce),
+      Buffer.from(key)
+    );
+  } catch {
     throw new Error('Decryption failed: authentication tag mismatch (data may be tampered)');
   }
 
